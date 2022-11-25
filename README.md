@@ -7,3 +7,12 @@ This function is planned to be implemented for TikTok, Instagram and Facebook po
 At this moment the but is under heavy development. Phase 1 is implemented, thus TikTok links are working as planned.
 
 This Discord bot is a successor to the CapConvert bot
+
+## It will run on AWS - Lightsail
+Invite the bot to your server: FUTURE LINK
+
+### Buy me a coffee
+Please consider to donate to compensate my effort and freetime and to help me afford a stronger server for better experience.
+
+- [PayPal](https://www.paypal.com/paypalme/alenoii)
+- [BuyMeACoffee](https://www.buymeacoffee.com/alenoii)
