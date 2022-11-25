@@ -1,5 +1,3 @@
-#TODO
-
 class Insta:
     url: str
     data: str = None
@@ -24,3 +22,4 @@ class Insta:
                 print(f"{self.errCode} - ERROR: {e}")
             else:
                 print(f"{self.errCode} - ERROR: No content in '{message.content}'")
+
