@@ -1,4 +1,4 @@
-from freeproxy import freeproxy
+import freeproxy
 import requests
 from bs4 import BeautifulSoup
 import json
