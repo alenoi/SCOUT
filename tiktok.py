@@ -23,7 +23,7 @@ class TikTok:
         r = requests.get(self.url,
             headers={
                 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'},
-            timeout=10)
+            timeout=30)
         self.data = r.text
 
         html = BeautifulSoup(self.data, 'html.parser')
