@@ -1,4 +1,7 @@
-import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import json
 import misc
@@ -15,24 +18,22 @@ class TikTok:
     videoAuthor: str = None
 
     def __init__(self, url):
+        logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                            level=logging.DEBUG,
+                            datefmt='%Y-%m-%d %H:%M:%S')
         self.url = url
         self.getData()
         self.getVideo()
 
     def getData(self):
-        logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
-                            level=logging.DEBUG,
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        proxies = misc.getProxy()
-        print(proxies)
-        r = requests.get(self.url,
-                         proxies=proxies,
-                         headers={
-                             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
-                         timeout=10)
 
-        self.data = r.text
-
+        options = webdriver.ChromeOptions()
+        options.headless = True
+        with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver:
+            driver.get(self.url)
+            self.videoTitle = driver.title
+            self.data = driver.page_source
+        print(self.data)
         html = BeautifulSoup(self.data, 'html.parser')
         self.videoTitle = html.head.title.string
 
