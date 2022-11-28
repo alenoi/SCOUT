@@ -1,3 +1,5 @@
+from proxyscrape import create_collector
+
 def jsonFindAttr(attr: str, jsonData):
     for k, v in jsonData.items():
         if k == attr:
@@ -5,3 +7,8 @@ def jsonFindAttr(attr: str, jsonData):
         elif isinstance(v, dict):
             for id_val in jsonFindAttr(attr, v):
                 yield id_val
+
+def getProxy():
+    collector = create_collector('my-collector', 'https')
+    proxy = collector.get_proxy()
+    return proxy

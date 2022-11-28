@@ -1,4 +1,3 @@
-import freeproxy
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -24,10 +23,9 @@ class TikTok:
         logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
                             level=logging.DEBUG,
                             datefmt='%Y-%m-%d %H:%M:%S')
-        proxy_sources = ['proxylistplus', 'kuaidaili']
-        fp_client = freeproxy.FreeProxy(proxy_sources=proxy_sources)
 
-        r = fp_client.get(self.url,
+        r = requests.get(self.url,
+                         proxies=misc.getProxy(),
                          headers={
                              'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
                          timeout=10)
