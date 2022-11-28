@@ -20,14 +20,17 @@ class TikTok:
 
     def getData(self):
         logging.basicConfig(format = '%(asctime)s %(levelname)-8s %(message)s',level=logging.DEBUG, datefmt = '%Y-%m-%d %H:%M:%S')
-        r = requests.get(self.url,
-            headers={
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
-            timeout=30)
-        self.data = r.text
+        try:
+            r = requests.get(self.url,
+                headers={
+                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
+                timeout=30)
 
-        html = BeautifulSoup(self.data, 'html.parser')
-        self.videoTitle = html.head.title.string
+            self.data = r.text
+
+            html = BeautifulSoup(self.data, 'html.parser')
+            self.videoTitle = html.head.title.string
+        except Exception as e: print(e)
 
     def parseData(self):
         html = BeautifulSoup(self.data, 'html.parser')
