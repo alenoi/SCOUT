@@ -22,7 +22,7 @@ class TikTok:
         logging.basicConfig(format = '%(asctime)s %(levelname)-8s %(message)s',level=logging.DEBUG, datefmt = '%Y-%m-%d %H:%M:%S')
         r = requests.get(self.url,
             headers={
-                'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'},
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
             timeout=30)
         self.data = r.text
 
