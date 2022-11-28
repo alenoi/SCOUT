@@ -26,11 +26,13 @@ class TikTok:
                     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
                 timeout=30)
 
-            self.data = r.text
+        except Exception as e:
+            raise Exception(e)
 
-            html = BeautifulSoup(self.data, 'html.parser')
-            self.videoTitle = html.head.title.string
-        except Exception as e: print(e)
+        self.data = r.text
+
+        html = BeautifulSoup(self.data, 'html.parser')
+        self.videoTitle = html.head.title.string
 
     def parseData(self):
         html = BeautifulSoup(self.data, 'html.parser')
