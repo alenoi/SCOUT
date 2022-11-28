@@ -40,7 +40,6 @@ class Msg:
             if self.type:
                 self.colors()
                 self.msgContent()
-                self.getVideo()
 
         except Exception as e:
             if e:
