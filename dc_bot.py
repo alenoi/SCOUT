@@ -2,7 +2,7 @@ import os
 import discord
 from dotenv import load_dotenv
 import message_process as mc
-
+from multiprocessing import Process
 
 def getIntents():
     intents = discord.Intents()
@@ -42,6 +42,7 @@ async def on_message(message):
         reply = mc.Msg(message)
         if reply.type:
             await message.edit(suppress=True)
+            reply.getVideo()
             if reply.replyVideo:
                 rMsg = await message.channel.send(content=reply.replyVideo, reference=message)
                 await rMsg.edit(suppress=False)

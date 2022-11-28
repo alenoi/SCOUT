@@ -1,5 +1,4 @@
-import urllib3
-import certifi
+import requests
 from bs4 import BeautifulSoup
 import json
 import misc
@@ -20,11 +19,12 @@ class TikTok:
         self.getVideo()
 
     def getData(self):
-        headers = {
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36',
-        }
-        resp = urllib3.PoolManager(ca_certs=certifi.where()).request("GET", self.url, retries=10, headers=headers)
-        self.data = resp.data.decode('utf-8')
+        r = requests.get(self.url,
+            headers={
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'},
+            timeout=10)
+        self.data = r.text
+
         html = BeautifulSoup(self.data, 'html.parser')
         self.videoTitle = html.head.title.string
 
