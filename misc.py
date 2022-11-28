@@ -11,4 +11,5 @@ def jsonFindAttr(attr: str, jsonData):
 def getProxy():
     collector = create_collector('my-collector', 'http')
     proxy = collector.get_proxy()
-    return {'http': f'{proxy.host}'}
+    print(proxy)
+    return f'{proxy.host}:{proxy.port}'

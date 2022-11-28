@@ -26,17 +26,6 @@ class TikTok:
         self.getVideo()
 
     def getData(self):
-
-        # options = webdriver.ChromeOptions()
-        # options.headless = True
-        # with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver:
-        #     driver.get(self.url)
-        #     self.videoTitle = driver.title
-        #     self.data = driver.page_source
-        # print(self.data)
-        # html = BeautifulSoup(self.data, 'html.parser')
-        # self.videoTitle = html.head.title.string
-
         options = webdriver.ChromeOptions()
         options.headless = True
         service = ChromeService(executable_path=ChromeDriverManager().install())
