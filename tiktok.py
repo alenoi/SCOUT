@@ -27,7 +27,7 @@ class TikTok:
                 timeout=30)
 
         except Exception as e:
-            raise Exception(e)
+            print(e)
 
         self.data = r.text
 
