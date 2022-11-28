@@ -9,6 +9,6 @@ def jsonFindAttr(attr: str, jsonData):
                 yield id_val
 
 def getProxy():
-    collector = create_collector('my-collector', 'https')
+    collector = create_collector('my-collector', 'http')
     proxy = collector.get_proxy()
-    return proxy
+    return {'http': f'{proxy.host}'}
