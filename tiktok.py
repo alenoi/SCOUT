@@ -1,7 +1,4 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+
 from bs4 import BeautifulSoup
 import json
 import misc
@@ -26,15 +23,16 @@ class TikTok:
         self.getVideo()
 
     def getData(self):
-        options = webdriver.ChromeOptions()
-        options.headless = True
-        service = ChromeService(executable_path=ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
-        driver.get(self.url)
+        driver = misc.openUrl()
+
         self.videoTitle = driver.title
-        self.data = driver.page_source
-        html = BeautifulSoup(self.data, 'html.parser')
-        self.videoTitle = html.head.title.string
+        if self.videoTitle:
+            self.data = driver.page_source
+
+        # html = BeautifulSoup(self.data, 'html.parser')
+        # self.videoTitle = html.head.title.string
+
+
     def parseData(self):
         html = BeautifulSoup(self.data, 'html.parser')
         self.videoDescription = html.find(attrs={"property": "og:description"})['content']
